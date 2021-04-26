@@ -1,0 +1,142 @@
+<html>
+
+ <style>
+  span {
+    display: inline-block;
+    width: 990px;
+    height: 50px;
+    margin: 70px;
+    background-color: blue;
+  }
+ 
+  </style>
+
+
+
+<head>
+<title>Fetch data</title>
+
+
+<h2 class="text-primary"><b><h2 style="color:white; margin: 70px; margin-left: 15px; margin-bottom: 10px ; text-align: center; font-family: TimesNewRoman;">PARTICIPANTS OF CLOUDATHON<h2></h2>
+</b>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+
+<style>
+body {
+  background-image: url('banner-bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+
+<body>
+
+ 
+ 
+  
+
+<div class="container mt=3">
+   <span class="rounded-lg">
+	<table class = "table  text-white">
+	
+		<thead>
+		
+			<th>Sno</th>
+			<th>Reg_No</th>
+			
+			<th>Name</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Year</th>
+		</thead>
+		
+		
+		<tbody id="tbody1">  
+		
+		</tbody>
+	</table>
+  </span>
+</div>
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+	
+<script id ="MainScript">
+		var firebaseConfig = {
+    apiKey: "AIzaSyCrS3u-xFn4jFEUp9d_lCY_myMp4wu5vzE",
+    authDomain: "login-c59fb.firebaseapp.com",
+    databaseURL: "https://login-c59fb-default-rtdb.firebaseio.com",
+    projectId: "login-c59fb",
+    storageBucket: "login-c59fb.appspot.com",
+    messagingSenderId: "714983196794",
+    appId: "1:714983196794:web:30b7f76067c1ed78e313c3",
+    measurementId: "G-QYWLE0SKLL"
+  };
+
+		firebase.initializeApp(firebaseConfig);
+		
+		
+		
+		function SelectAllData()
+		{
+			firebase.database().ref('Collected Data').once('value',
+			function(AllRecords){
+				AllRecords.forEach(
+					function(CurrentRecord){
+						var roll = CurrentRecord.val().roll;
+						var name = CurrentRecord.val().name;
+						var email = CurrentRecord.val().email;
+						var phone = CurrentRecord.val().phone;
+						var year = CurrentRecord.val().year;
+						
+						AddItemsTable(roll,name,email,phone,year);
+				
+					}
+			
+				);
+			});
+		}
+		window.onload = SelectAllData;
+		
+		
+		var sno = 0;
+		
+		function AddItemsTable(roll,name,email,phone,year){
+			var tbody = document.getElementById('tbody1');
+			var trow = document.createElement('tr');
+			var td1 = document.createElement('td');
+			var td6 = document.createElement('td');
+			var td2 = document.createElement('td');
+			var td3 = document.createElement('td');
+			var td4 = document.createElement('td');
+			var td5 = document.createElement('td');
+			
+			td1.innerHTML = ++sno;
+		    td6.innerHTML = roll;
+			td2.innerHTML = name;
+			td3.innerHTML = email;
+			td4.innerHTML = phone;
+			td5.innerHTML = year;
+
+			trow.appendChild(td1);
+			trow.appendChild(td6);
+			trow.appendChild(td2);
+			trow.appendChild(td3);
+			trow.appendChild(td4);
+			trow.appendChild(td5);
+			
+			
+			tbody.appendChild(trow);
+}
+
+		
+</script>
+	
+</body>
+
+</html>

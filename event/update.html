@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	
+	<title>Register here!</title>
+	<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+	</script>
+
+	<link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity=
+"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+		crossorigin="anonymous">
+</head>
+<style>
+body {
+  background-image: url('banner-bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+
+
+<body class="container" style="margin-top: 50px;
+	width: 50%; height:auto;">
+	
+	<h2 class="text-primary"><h2 style="color:white;margin-left: 15px; margin-bottom: 10px ; text-align: center; font-family: TimesNewRoman;">REGISTER HERE<h2>
+		 
+	</h2>
+	
+	<form class="container" id="contactForm">
+		<div class="card">
+			<div class="card-body">
+				<div class="form-group">
+					<label for="exampleFormControlInput1">
+						Enter Your Name
+					</label>
+					
+					<input type="text" class="form-control"
+					id="name" placeholder="Enter your name">
+				</div>
+
+				<div class="form-group">
+					<label for="exampleFormControlInput1">
+						Email address
+					</label>
+					
+					<input type="email" class="form-control"
+					id="email" placeholder="name@example.com">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">
+						Phone Number
+					</label>
+					
+					<input type="number" class="form-control"
+					id="phone" placeholder="Enter your number">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">
+						College
+					</label>
+					
+					<input type="text" class="form-control"
+					id="college" placeholder="Enter your College Name">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">
+						Year
+					</label>
+					
+					<input type="number" class="form-control"
+					id="year" placeholder="Current year in number">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">
+						Department
+					</label>
+					
+					<input type="text" class="form-control"
+					id="dept" placeholder="CSE/IT/ECE/EEE/MECH/MECT/CIVIL">
+				</div>
+				
+			</div>
+			
+			<p style="text-align:center; color: blue">Need to Update Your Details??</p>
+			<button  id="update"
+				style="margin-left: 200px;margin-right: 200px; margin-top: 5px">
+				Update
+			</button>
+		</div>
+	</form>
+
+	<script src=
+"https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+	</script>
+	
+	<script>
+		var firebaseConfig = {
+    apiKey: "AIzaSyCrS3u-xFn4jFEUp9d_lCY_myMp4wu5vzE",
+    authDomain: "login-c59fb.firebaseapp.com",
+    databaseURL: "https://login-c59fb-default-rtdb.firebaseio.com",
+    projectId: "login-c59fb",
+    storageBucket: "login-c59fb.appspot.com",
+    messagingSenderId: "714983196794",
+    appId: "1:714983196794:web:30b7f76067c1ed78e313c3",
+    measurementId: "G-QYWLE0SKLL"
+  };
+
+		firebase.initializeApp(firebaseConfig);
+
+		
+		
+// ready the data 
+var name,email,phone,college,year,dept;
+function Ready()
+{
+	name = document.getElementById('name').value;
+	email = document.getElementById('email').value;
+	phone = document.getElementById('phone').value;
+	college = document.getElementById('college').value;
+	year = document.getElementById('year').value;
+	dept = document.getElementById('dept').value;
+}
+
+//update
+document.getElementById('update').onclick = function()
+{
+	Ready();
+	firebase.database().ref('Collected Data/'+ name).update({
+				email: email,
+				phone: phone,
+				college:college,
+				year:year,
+				dept:dept
+			});
+			
+}
+
+
+
+	</script>
+</body>
+
+</html>
